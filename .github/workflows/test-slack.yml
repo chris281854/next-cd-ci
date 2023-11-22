@@ -10,8 +10,20 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-            payload-file-path: "./test-failure-slack-payload.json"
-             
+         payload: |
+          {
+          "blocks":[
+             {
+                 "type": "section",
+                 "text": {
+                     "type": "mrkdwn",
+                     "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|${{github.workflow}} workflow run >* failed. 🚨🚨🚨"
+                 }
+             }
+          ]
+          }
+         
+          
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
