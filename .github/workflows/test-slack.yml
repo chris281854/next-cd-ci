@@ -17,7 +17,12 @@ jobs:
                  "type": "section",
                  "text": {
                      "type": "mrkdwn",
-                     "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|Se ha registrado un envento en el workflow: ${{github.workflow}} el cual necesita revision: Estado actual: >* failed. 🚨🚨🚨"
+                     "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|
+                      
+                      Se ha registrado un envento en el repositorio: ${{github.repository}} 
+                      El cual activo el workflow: **** ${{github.workflow}} ****
+                      Por lo que requiere su revision de manera urgente...
+                      Estado actual: >* failed. 🚨🚨🚨"
                  }
              }
           ]
