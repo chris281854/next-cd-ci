@@ -1,0 +1,17 @@
+name: slack notifcation
+
+on: [workflow_dispatch]
+
+jobs:
+   slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: slack notification
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+            payload-file-path: "./test-failure-slack-playload.json"
+             
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          
