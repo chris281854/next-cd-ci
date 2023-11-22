@@ -22,10 +22,10 @@ jobs:
                       El cual activo el workflow: **** ${{github.workflow}} ****
                       Por lo que requiere su revision de manera urgente...
                       Estado actual: >* failed. 🚨🚨🚨"
-                 }
-             }
-          ]
-          }
+                     }
+                   }
+                 ]
+               }
          
           
         env:
