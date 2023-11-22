@@ -17,7 +17,7 @@ jobs:
                  "type": "section",
                  "text": {
                      "type": "mrkdwn",
-                     "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|${{github.workflow}} workflow run >* failed. 🚨🚨🚨"
+                     "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|Se ha registrado un envento en el workflow: ${{github.workflow}} el cual necesita revision: Estado actual: >* failed. 🚨🚨🚨"
                  }
              }
           ]
