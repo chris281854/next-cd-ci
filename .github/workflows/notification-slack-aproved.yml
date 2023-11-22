@@ -1,0 +1,28 @@
+name: slack notifcation -Test approval
+
+on: [workflow_dispatch, workflow_call]
+
+jobs:
+  slack-approbal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: slack notification
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+            "blocks":[
+               {
+                   "type": "section",
+                   "text": {
+                       "type": "mrkdwn",
+                       "text": "✅👍👌✅ *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}| Los cambios solicitados al repositorio: *** ${{github.repository}} *** Solicitados mediante Pull Request se ecuentra verificado y listo para realizar el Merge con la main branch.. Estdo actual: >* Aprobado. ✅👍👌✅"
+                       }
+                     }
+                   ]
+                 }
+
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
