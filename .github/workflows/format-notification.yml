@@ -1,4 +1,4 @@
-name: slack notifcation
+name: slack notifcation format error
 
 on: [workflow_dispatch, workflow_call]
 
@@ -17,7 +17,7 @@ jobs:
                    "type": "section",
                    "text": {
                        "type": "mrkdwn",
-                       "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}| Se ha registrado un envento en el repositorio: *** ${{github.repository}} *** El cual activo el workflow: **** ${{github.workflow}} ***  Por lo que requiere su revision de manera urgente... Estdo actual: >* failed. 🚨🚨🚨"
+                       "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}| Se ha registrado anomalias en formato de codigo en el repositorio: *** ${{github.repository}} *** El cual activo el workflow: **** ${{github.workflow}} ***  Por lo que requiere su revision... Estdo actual: >* Pendiente. 🚨🚨🚨"
                        }
                      }
                    ]

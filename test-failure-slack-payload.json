@@ -1,13 +1,11 @@
 {
- "blocks":[
+  "blocks": [
     {
-        "type": "section",
-        "text": {
-            "type": "mrkdwn",
-            "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|${{github.workflow}} workflow run >* failed. 🚨🚨🚨"
-        }
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "🚨🚨🚨 *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|${{github.workflow}} workflow run >* failed. 🚨🚨🚨"
+      }
     }
- ]
+  ]
 }
-
- 
