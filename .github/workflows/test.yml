@@ -19,10 +19,11 @@ jobs:
         id: format-check
         run: npm run format
       - name: Format notifications
+        id: format-not
         if: steps.format-check.outcome == 'failure'
         uses: ./.github/workflows/format-notification.yml
       - name: Fix Formatting Errors
-        if: steps.format-check.outcome == 'failure' && steps.format-check.outcome == 'success'
+        if: steps.format-check.outcome == 'failure' && steps.format-not.outcome == 'success'
         run: npm run format:fix
       - name: Check for ESLint Errors
         run: npm run lint
