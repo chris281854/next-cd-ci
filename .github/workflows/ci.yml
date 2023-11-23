@@ -19,3 +19,9 @@ jobs:
     if: ${{needs.run-tests.result == 'success'}}
     uses: ./.github/workflows/notification-slack-aproved.yml
     secrets: inherit
+
+  deleting-branch:
+    needs: [run-notificacion, run-tests]
+    if: ${{needs.run-tests.result == 'success'}}
+    uses: ./.github/workflows/deleting-aditionalbranches.yml
+    secrets: inherit
