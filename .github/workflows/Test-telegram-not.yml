@@ -12,10 +12,10 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             ${{ github.actor }} created commit:
- 
- 
 
- 
+
+
+
 
             Repository: ${{ github.repository }}
 
