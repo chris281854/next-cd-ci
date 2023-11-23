@@ -18,7 +18,7 @@ jobs:
       - name: Run Tests
         uses: ./.github/workflows/test.yml
         env:
-          SOME_SECRET: ${{ secrets.SOME_SECRET }}
+          secrets: inherit
 
   notification-slack:
     needs: [run-tests]
@@ -32,4 +32,5 @@ jobs:
         uses: ./.github/workflows/notification-slack-aproved.yml
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
