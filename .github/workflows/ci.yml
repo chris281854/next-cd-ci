@@ -13,3 +13,7 @@ jobs:
   run-tests:
     uses: ./.github/workflows/test.yml
     secrets: inherit
+
+  run-notificacion:
+    uses: ./.github/workflows/notification-slack-aproved.yml
+    secrets: inherit
