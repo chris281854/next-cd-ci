@@ -1,4 +1,4 @@
-name: slack notifcation -Test approval
+name: slack notifcation -Test approbal
 
 on: [workflow_dispatch, workflow_call]
 
