@@ -20,5 +20,5 @@ jobs:
                issue_number: context.issue.number,
                owner: context.repo.owner,
                repo: context.repo.repo,
-               body: '🗹🗹Gracias por contribuir al repositorio ${{github.repository}}, accion: ${{github.action_status}}!🗹🗹'
+               body: ' ✅✅ Gracias por contribuir al repositorio ${{github.repository}}! ✅✅'
             });
