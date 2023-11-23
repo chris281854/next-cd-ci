@@ -19,7 +19,7 @@ jobs:
                    "type": "section",
                    "text": {
                        "type": "mrkdwn",
-                       "text": "✅👍👌✅ *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}| Los cambios solicitados al repositorio: *** ${{github.repository}} *** Solicitados mediante Pull Request se ecuentra verificado y listo para realizar el Merge con la main branch.. Estdo actual: >* Aprobado. ✅👍👌✅"
+                       "text": "✅👍👌✅ *<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}| Los cambios solicitados al repositorio: *** ${{github.repository}} *** mediante Pull Request se ecuentran verificado y listo para realizar el Merge con la main branch.. Estdo actual: >* Aprobado. ✅👍👌✅"
                        }
                      }
                    ]
