@@ -80,11 +80,3 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Send a Slack Message on Success
-        uses: ./.github/workflows/notification-slack-aproved.yml
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK

@@ -1,4 +1,5 @@
-name: CI
+name: Continuous integration
+
 on:
   pull_request:
     branches: [main]
@@ -9,5 +10,26 @@ concurrency:
 
 jobs:
   run-tests:
-    uses: ./.github/workflows/test.yml
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Tests
+        uses: ./.github/workflows/test.yml
+        env:
+          SOME_SECRET: ${{ secrets.SOME_SECRET }}
+
+  notification-slack:
+    needs: [run-tests]
+    if: job.run-tests.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Send a Slack Message on Success
+        uses: ./.github/workflows/notification-slack-aproved.yml
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
