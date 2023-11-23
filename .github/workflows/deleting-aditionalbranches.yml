@@ -1,23 +1,12 @@
-name: Delete Branch After Merge
-
+name: delete branch on close pr
 on:
-  pull_request:
-    types:
-      - closed
   workflow_dispatch:
-  workflow_call:
 
 jobs:
   delete-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Delete branch
-        run: |
-          # Obtener el nombre de la rama del pull request
-          branch_name=$(jq -r .pull_request.head.ref "$GITHUB_EVENT_PATH")
-
-          # Eliminar la rama remota
-          git push origin --delete $branch_name
+      - name: delete branch
+        uses: SvanBoxel/delete-merged-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
