@@ -22,7 +22,7 @@ jobs:
 
   notification-slack:
     needs: [run-tests]
-    if: job.run-tests.result == 'success'
+    if: ${{ needs.run-tests.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
