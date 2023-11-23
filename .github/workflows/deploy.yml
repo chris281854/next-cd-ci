@@ -1,7 +1,7 @@
 name: Deploy AWS
 
 on:
-  Workflow_dispatch:
+  workflow_dispatch:
     inputs:
       aws-env:
         description: "AWS Elastic Beanstalk Environment"
