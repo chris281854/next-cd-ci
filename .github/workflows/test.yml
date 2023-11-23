@@ -88,7 +88,7 @@ jobs:
       - name: Verificacion de repositorio
         uses: actions/checkout@v3
       - name: Slack notificacion de aprobacion
-        uses: ./.github/workflows/slack-aprobal-not.yml
+        uses: ./.github/workflows/notification-slack-aproved.yml
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
