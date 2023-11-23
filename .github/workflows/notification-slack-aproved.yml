@@ -6,6 +6,8 @@ jobs:
   slack-approbal:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: slack notification
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
