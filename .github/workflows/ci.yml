@@ -15,5 +15,7 @@ jobs:
     secrets: inherit
 
   run-notificacion:
+    needs: [run-tests]
+    if: ${{needs.run-tests.result == 'success'}}
     uses: ./.github/workflows/notification-slack-aproved.yml
     secrets: inherit
