@@ -14,12 +14,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  create-version-pr-or-realese:
-    runs-on: ubuntu-lastest
+  create-version-pr-or-release:
+    runs-on: ubuntu-latest # Corregí "lastest" a "latest"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setting up Node js environment
+      - name: Setting up Node.js environment
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -33,8 +33,8 @@ jobs:
           publish: npx changesets tag
         env:
           GITHUB_TOKEN: ${{ secrets.CHANGESETS_TOKEN }}
-      - run: echo "${{ toJson(steps.changests.outputs.version )}}"
-      - name: Send a Slack message for Version pr updates
+      - run: echo "${{ toJson(steps.changests.outputs.version) }}"
+      - name: Send a Slack message for Version PR updates
         if: steps.changests.outputs.pullRequestNumber
 
         uses: slackapi/slack-github-action@v1.24.0
