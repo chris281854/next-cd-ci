@@ -28,9 +28,9 @@ jobs:
         run: npm ci
       - name: Create version PR or Release
         id: changests
-        uses: changesets/action@v1
+        uses: changesets/action@main
         with:
-          publish: npx changesets tag
+          publish: npx changeset tag
         env:
           GITHUB_TOKEN: ${{ secrets.CHANGESETS_TOKEN }}
       - run: echo "${{ toJson(steps.changests.outputs.version) }}"
