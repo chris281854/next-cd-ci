@@ -6,8 +6,6 @@ on:
       - master
   workflow_dispatch:
   pull_request:
-    branches:
-      - master
     types:
       - closed
 
@@ -35,9 +33,9 @@ jobs:
           publish: npx changesets tag
         env:
           GITHUB_TOKEN: ${{ secrets.CHANGESETS_TOKEN }}
-      - run: echo "${{ toJson(steps.changesets.outputs.version )}}"
+      - run: echo "${{ toJson(steps.changests.outputs.version )}}"
       - name: Send a Slack message for Version pr updates
-        if: steps.changesets.outputs.pullRequestNumber
+        if: steps.changests.outputs.pullRequestNumber
 
         uses: slackapi/slack-github-action@v1.24.0
 
