@@ -25,7 +25,7 @@ jobs:
           node-version: 18
           cache: "npm"
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Check for Formatting Errors
         id: format-check
@@ -97,7 +97,8 @@ jobs:
 
       - name: Create version PR or Release
         id: changests
-        uses: changesets/action@main
+        uses: changesets/action@v1.2.3
+        run: npm install --global changesets
         with:
           publish: npx changeset tag
         env:
