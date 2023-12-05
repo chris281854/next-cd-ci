@@ -11,6 +11,8 @@ concurrency:
 jobs:
   create-version-pr-or-release:
     runs-on: ubuntu-latest
+    permissions: write-all
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
