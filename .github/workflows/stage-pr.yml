@@ -34,8 +34,8 @@ jobs:
               ref: "${{ steps.get-head-ref.outputs.result }}",
               inputs: {
                 "aws-env": `controlclientes-demo-pr-${context.issue.number}`,
-                "github-env": "staging"
-             #   "report-pr": `${context.issue.number}`
+                "github-env": "staging",
+               "report-pr": `${context.issue.number}`
               }
             })
             console.log(response)
