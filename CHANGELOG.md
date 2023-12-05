@@ -1,5 +1,11 @@
 # github-actions-course-demo
 
+## 0.2.0
+
+### Minor Changes
+
+- b47a295: Fixing errors
+
 ## 0.1.1
 
 ### Patch Changes
