@@ -36,13 +36,13 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 workflow_id: 'deploy.yml',
-                ref: "${{ steps.get-head-ref.outputs.result}}"
+                ref: "${{ steps.get-head-ref.outputs.result}}",
                 inputs: {
-                    "aws-env": `controlclientes-demo-pr-${context.issue.number}`
+                    "aws-env": `controlclientes-demo-pr-${context.issue.number}`,
                     "github-env": "staging",
                     "report-pr":`${context.issue.number}`
 
                 
                 }
-            })
+            });
             console.log(response);
