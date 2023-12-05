@@ -3,6 +3,10 @@ name: Continuous Deployment
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+    types: [closed]
+  workflow_dispatch:
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
@@ -11,7 +15,20 @@ concurrency:
 jobs:
   create-version-pr-or-release:
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      id-token: write
+      issues: write
+      discussions: write
+      packages: write
+      pages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write
 
     steps:
       - name: Checkout
