@@ -2,15 +2,10 @@ name: Continuous Deployment
 
 on:
   push:
-    branches:
-      - master
-  workflow_dispatch:
-  pull_request:
-    types:
-      - closed
+    branches: [main]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{github.workflow}}-${{github.ref}}
   cancel-in-progress: true
 
 jobs:
