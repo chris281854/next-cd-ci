@@ -13,6 +13,9 @@ on:
         required: true
         default: "staging"
         type: string
+      report-pr:
+        description: "Report PR"
+        type: number
 
   workflow_call:
     inputs:
@@ -33,6 +36,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
     environment:
       name: ${{ inputs.github-env }}
       url: "http://${{steps.get-env-cname.outputs.aws_env_cname}}"
@@ -49,6 +55,22 @@ jobs:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Update Pull Request
+        uses: actions/github-script@v6
+        if: inputs.report-pr
+        continue-on-error: true
+        with:
+          script: |
+            const comment = `### ⏳ Deployment en proceso ....`
+            [Puedes minitorear el progreso aqui .] (https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+
+            github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: ${{ inputs.report-pr }},
+                body: comment
+            })
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -120,3 +142,46 @@ jobs:
       - name: Abort if Cancelled
         if: cancelled() && steps.install-eb-cli.conclusion == 'success'
         run: eb abort ${{ inputs.aws-env }}
+
+  Update-pr-success:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Update Pull Request (Succes)
+        uses: actions/github-script@v6
+        if: needs.deploy.outputs.status == 'success' && inputs.report-pr
+        continue-on-error: true
+        with:
+          script: |
+            const comment = `### 🛑  Deployment Incompleto o fallido.`
+            [Visualiza los Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`
+
+            github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: ${{ inputs.report-pr }},
+                body: comment
+            })
+
+  Update-pr-failed:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Update Pull Request (fails)
+        uses: actions/github-script@v6
+        if: needs.deploy.outputs.status == 'failed' && inputs.report-pr
+        continue-on-error: true
+        with:
+          script: |
+            const comment = `### 🚀  Deployment completado.`
+            Puedes visualizar el despliegue aqui: http://${{ steps.get-env-cname.outputs.aws_env_cname }}`;
+            github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: ${{ inputs.report-pr }},
+            body: comment
+                          })

@@ -20,5 +20,6 @@ jobs:
                issue_number: context.issue.number,
                owner: context.repo.owner,
                repo: context.repo.repo,
-               body: '⚠️⚠️ Gracias por solicitar su contribucion al repositorio ${{github.repository}}, este pull request esta en proceso de revision. ⚠️⚠️'
+               body: '⚠️⚠️ Gracias por solicitar su contribucion al repositorio ${{github.repository}}, este pull request esta en proceso de revision. ⚠️⚠️ 
+               Comment with `/deploy` to deploy to a new staging environment and `/destroy` to destroy the staging environment'
             });

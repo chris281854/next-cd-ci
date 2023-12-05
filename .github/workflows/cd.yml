@@ -15,6 +15,7 @@ concurrency:
 jobs:
   create-version-pr-or-release:
     runs-on: ubuntu-latest
+
     permissions:
       actions: write
       checks: write
