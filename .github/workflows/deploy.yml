@@ -29,6 +29,9 @@ on:
         required: true
         default: "staging"
         type: string
+      report-pr:
+        description: "Report PR"
+        type: number
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref}}-${{ inputs.aws-env }}-${{ inputs.github-env }}
