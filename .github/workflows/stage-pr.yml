@@ -35,7 +35,7 @@ jobs:
               inputs: {
                 "aws-env": `controlclientes-demo-pr-${context.issue.number}`,
                 "github-env": "staging",
-                "pull_number": `${context.issue.number}`
+                "report-pr": `${context.issue.number}`
               }
             })
             console.log(response)
