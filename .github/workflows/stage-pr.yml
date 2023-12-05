@@ -1,5 +1,4 @@
 name: Deploy PR Branch
-
 on:
   issue_comment:
     types: [created]
@@ -8,13 +7,10 @@ jobs:
   trigger-pr-branch-deploy:
     runs-on: ubuntu-latest
     permissions:
-      issues: write
-      pull-requests: write
-      contents: read
       actions: write
     if: github.event.issue.pull_request && github.event.issue.state == 'open' && github.event.comment.body == '/deploy'
     steps:
-      - name: Get pull Request Head REf
+      - name: Get Pull Request Head Ref
         id: get-head-ref
         uses: actions/github-script@v6
         with:
@@ -25,24 +21,21 @@ jobs:
                 repo: context.repo.repo,
                 pull_number: context.issue.number
             });
-            console.log(response.data);
-            return response.data.head.ref;
-
-      - name: Trigger a Branch  Deploy
+            console.log(response.data)
+            return response.data.head.ref
+      - name: Trigger a Branch Deploy
         uses: actions/github-script@v6
         with:
           script: |
             const response = await github.rest.actions.createWorkflowDispatch({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                workflow_id: 'deploy.yml',
-                ref: "${{ steps.get-head-ref.outputs.result}}",
-                inputs: {
-                    "aws-env": `controlclientes-demo-pr-${context.issue.number}`,
-                    "github-env": "staging",
-                    "report-pr":`${context.issue.number}`
-
-                
-                }
-            });
-            console.log(response);
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "deploy.yml",
+              ref: "${{ steps.get-head-ref.outputs.result }}",
+              inputs: {
+                "aws-env": `github-actions-course-demo-pr-${context.issue.number}`,
+                "github-env": "staging",
+                "report-pr": `${context.issue.number}`
+              }
+            })
+            console.log(response)
